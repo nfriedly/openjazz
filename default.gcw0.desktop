@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=OpenJazz
+Type=Application
+Exec=OpenJazz /usr/local/home/.openjazz/
+Icon=openjazz
+Comment=Classis Platformer. Original game files required
+Terminal=false
+Categories=games;
+X-OD-Manual=readme_gcw.txt
