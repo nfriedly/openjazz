@@ -5,7 +5,9 @@ TOOLCHAIN	= /opt/miyoo/usr
 CC = $(TOOLCHAIN)/bin/arm-linux-gcc
 CXX = $(TOOLCHAIN)/bin/arm-linux-g++
 
-INCLUDE=$(TOOLCHAIN)/arm-miyoo-linux-uclibc/sysroot/usr/include
+SYSROOT := $(TOOLCHAIN)/arm-miyoo-linux-uclibc/sysroot
+
+INCLUDE=$(SYSROOT)/usr/include
 #/opt/gcw0-toolchain/usr/mipsel-gcw0-linux-uclibc/sysroot/usr/include
 
 objects = \
