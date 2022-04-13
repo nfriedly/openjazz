@@ -1,0 +1,36 @@
+name: Miyoon CI Build
+
+on:
+  push:
+  pull_request:
+  workflow_call:
+    inputs:
+      submodule:
+        required: true
+        type: string
+
+jobs:   
+  build:
+    runs-on: ubuntu-20.04
+    container:
+      image: miyoocfw/toolchain:latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - if: inputs.submodule
+      run: git submodule update --init --depth 1 -- ${{ inputs.submodule }}
+      
+    # SYSROOT env prop is set in the docker image
+    - name: build
+      run: |
+        cd ${{ inputs.submodule || '.' }}
+        # ./configure
+        make -f Makefile.miyoo
+    
+    # - run: find ${{ inputs.submodule || '.' }}/
+    
+    - uses: actions/upload-artifact@v2
+      with:
+        name: OpenJazz
+        path: ${{ inputs.submodule || '.' }}/OpenJazz
+        if-no-files-found: error
